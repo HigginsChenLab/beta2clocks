@@ -29,9 +29,29 @@ An `.RData` file containing:
 - A variable starting with `DNAm` — beta matrix (samples as rows, CpGs as columns)
 - A variable starting with `pheno` — phenotype data with age and sex columns. Expected column names are `cAGE` and `cFEMALE`.
 
+## Options
+
+### Batch Size
+
+Use `--batch-size N` to control how many samples are processed at once (default: 250, set to 0 to disable batching):
+
+```bash
+Rscript pipeline/entrypoint.R --input data/YourDataset_cleaned.RData --batch-size 100
+```
+
+### Running Specific Clocks
+
+Use `--clocks` with a comma-separated list to run only specific clocks:
+
+```bash
+Rscript pipeline/entrypoint.R --input data/YourDataset_cleaned.RData --clocks Hannum,PhenoAge,DunedinPACE
+```
+
+Clock names match the `calc{Name}()` function names from methylCIPHER. `WhatSex` and `Zhang2019` always run as they are dependencies for downstream clocks.
+
 ## Clocks Included
 
-Hannum, Horvath1, Horvath2, PhenoAge, DNAmTL, CausAge, AdaptAge, DamAge, GrimAgeV1, GrimAgeV2, PCClocks, SystemsAge, DunedinPACE, DunedinPoAm38, StochasticClocks, EpiDISH, eFRS, DNAmIC
+WhatSex, Zhang2019, Hannum, Horvath1, Horvath2, PhenoAge, DNAmTL, CausAge, AdaptAge, DamAge, GrimAgeV1, GrimAgeV2, PCClocks, SystemsAge, DunedinPACE, DunedinPoAm38, StochasticClocks, EpiDish, eFRS, DNAmIC
 
 ## Citation
 
