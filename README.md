@@ -13,13 +13,16 @@ docker pull ghcr.io/higginschenlab/beta2clocks:latest
 Place your `_cleaned.RData` file in any local directory, then run:
 
 ```bash
-docker run --rm \
-  -v /path/to/your/data:/home/data:rw \
-  ghcr.io/higginschenlab/beta2clocks:latest \
-  Rscript pipeline/entrypoint.R --input data/YourDataset_cleaned.RData
+docker run --rm -v /path/to/your/data:/home/data:rw ghcr.io/higginschenlab/beta2clocks:latest Rscript pipeline/entrypoint.R --input data/YourDataset_cleaned.RData
 ```
 
-Remember to set `/path/to/your/data` to the directory containing your file — that's the only thing to change.
+CHANGE `/path/to/your/data` to the directory containing your pheno/DNAm file.
+CHANGE `YourDataset_cleaned.RData` to the name of your pheno/DNAm file.
+These are your computer's paths.
+
+DO NOT CHANGE `/home/data:rw`
+DO NOT CHANGE `data/`
+These are the container's paths. 
 
 Results are saved alongside the input file in the same directory.
 
